@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Param, Body, HttpCode } from '@nestjs/common';
 import {
   ApiTags,
   ApiOperation,
@@ -39,6 +39,7 @@ export class UserController {
   }
 
   @Post('batch-social')
+  @HttpCode(200)
   @ApiOperation({
     summary: 'Get followers and following counts for multiple users',
   })
@@ -47,7 +48,7 @@ export class UserController {
     description: 'Array of GitHub usernames (max 500)',
   })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Batch social data returned successfully',
   })
   @ApiResponse({ status: 400, description: 'Validation failed' })
